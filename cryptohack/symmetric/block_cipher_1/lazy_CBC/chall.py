@@ -4,6 +4,7 @@ from Crypto.Cipher import AES
 KEY = b'\x00' * 16  # Replace with your actual key
 FLAG = "flag{this_is_a_fake_flag_for_demo_purposes}"  # Replace with your actual flag
 
+# @chal.route('/lazy_cbc/encrypt/<plaintext>/')
 def encrypt(plaintext):
     plaintext = bytes.fromhex(plaintext)
     if len(plaintext) % 16 != 0:
@@ -15,6 +16,7 @@ def encrypt(plaintext):
     return {"ciphertext": encrypted.hex()}
 
 
+# @chal.route('/lazy_cbc/get_flag/<key>/')
 def get_flag(key):
     key = bytes.fromhex(key)
 
@@ -23,6 +25,7 @@ def get_flag(key):
     else:
         return {"error": "invalid key"}
 
+# @chal.route('/lazy_cbc/receive/<ciphertext>/')
 def receive(ciphertext):
     ciphertext = bytes.fromhex(ciphertext)
     if len(ciphertext) % 16 != 0:
@@ -48,4 +51,3 @@ if __name__ == "__main__":
     block_to_decrypt = sample_block + sample_block
     result = receive(block_to_decrypt)
     print(result)
-    
