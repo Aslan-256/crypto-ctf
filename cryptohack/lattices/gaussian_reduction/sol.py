@@ -3,7 +3,7 @@ import numpy as np
 
 def gauss_reduction(v, u):
     while True:
-        if np.linalg.norm(u) < np.linalg.norm(v):
+        if np.dot(u,u) < np.dot(v,v):
             v, u = u, v
         m = round(np.dot(v, u) / np.dot(v, v))
         if m == 0:
