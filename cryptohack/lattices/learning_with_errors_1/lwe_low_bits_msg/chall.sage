@@ -1,13 +1,11 @@
 # dimension
 n = 64
 # plaintext modulus
-p = 257 #2^8+1
+p = 257
 # ciphertext modulus
-q = 0x10001 #2^16+1
+q = 0x10001
 # bound for error term
-error_bound = int(floor((q/p)/2)) #2^7=128
-# message scaling factor
-delta = int(round(q/p)) #2^8=256
+error_bound = int(floor((q/p)/2))
 
 
 V = VectorSpace(GF(q), n)
@@ -18,7 +16,7 @@ m = 42 # to find
 
 A = V.random_element()
 error = randint(-error_bound, error_bound)
-b = A * S + m * delta + error
+b = A * S + error * p + m
 
 print("A = ", A)
 print("b = ", b)
